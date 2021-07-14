@@ -9,29 +9,39 @@ import {
 } from "react-router-dom";
 import UserList from "./pages/userList/UserList";
 import User from "./pages/user/User";
+import Login from "./componnet/login/Login";
+import ParkOwnerReq from "./pages/parkOwnerReq/ParkOwnerReq";
+import AddToMap from "./pages/addToMap/AddToMap";
 
 
 
 function App() {
   return (
     <Router>
-      <Topbar/>
-      <div className="containersidebar">
-        <Sidebar/>
-        <Switch>
-          <Route exact path="/">
-            <Home/>
-          </Route>
-          <Route path="/users">
-            <UserList/>
-          </Route>
-          <Route path="/user/:userID">
-            <User/>
-          </Route>
-        </Switch>
-          
-      </div>  
-    </Router>
+      {/* <Login/> */}
+    <Topbar/>
+    <div className="containersidebar">
+      <Sidebar/>
+      <Switch>
+        <Route exact path="/">
+          <Home/>
+        </Route>
+        <Route path="/users">
+          <UserList/>
+        </Route>
+        <Route path="/user/:userID">
+          <User/>
+        </Route>
+        <Route path="/request">
+          <ParkOwnerReq/>
+        </Route>
+        <Route path="/addtomap">
+          <AddToMap/>
+        </Route>
+      </Switch>
+        
+    </div>  
+  </Router>
   );
 }
 
