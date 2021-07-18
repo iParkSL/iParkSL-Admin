@@ -1,15 +1,15 @@
-import './userList.css';
+import './viewcustomer.css';
 import { DataGrid } from '@material-ui/data-grid';
 // import { getDefaultNormalizer } from '@testing-library/react';
 import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
-import {userRows} from '../../dummyData';
-import { Link } from "react-router-dom";
+import {customerRows} from '../../dummyData';
+// import { Link } from "react-router-dom";
 import { useState } from 'react';
 
 
-export default function UserList() {
+export default function ViewCustomers() {
 
-  const [data, setData] = useState(userRows);
+  const [data, setData] = useState(customerRows);
 
   const handleDelete = (id)=>{
     setData(data.filter(item=>item.id !== id));
@@ -26,6 +26,7 @@ export default function UserList() {
         )
     } },
     { field: 'email', headerName: 'Email', width: 180 },
+    { field: 'date', headerName: 'Last Used Date', width: 150},
     {
       field: 'action',
       headerName: 'Actions',
@@ -33,9 +34,9 @@ export default function UserList() {
       renderCell: (params)=>{
         return(
           <>
-          <Link to={"/user/"+params.row.id}>
+          {/* <Link to={"/user/"+params.row.id}>
             <button className="userListEdit">Edit</button>
-          </Link>
+          </Link> */}
           
           <DeleteOutlineIcon className="userListDelete" onClick={()=>handleDelete(params.row.id)}/>
           </>
@@ -47,12 +48,16 @@ export default function UserList() {
     return (
       <div className="listcontainer">
         <div className="userListHead">
-          <h3 className="userListHeader">Park Owners</h3>
+          <h3 className="userListHeader">View Customers</h3>
         </div>
         <div className="userList" style={{ height: 400, marginTop: 80}}>
             <DataGrid className="userListData" rows={data} disableSelectionOnClick columns={columns} pageSize={5} checkboxSelection />
 
         </div>
+        {/* <div className="userList" style={{ height: 400, marginTop: 80}}>
+            <DataGrid className="userListData" rows={data} disableSelectionOnClick columns={columns} pageSize={5} checkboxSelection />
+
+        </div> */}
       </div>
         
     )

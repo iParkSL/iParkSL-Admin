@@ -1,4 +1,4 @@
-import './userList.css';
+import './requests.css';
 import { DataGrid } from '@material-ui/data-grid';
 // import { getDefaultNormalizer } from '@testing-library/react';
 import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import { useState } from 'react';
 
 
-export default function UserList() {
+export default function Requests() {
 
   const [data, setData] = useState(userRows);
 
@@ -33,11 +33,11 @@ export default function UserList() {
       renderCell: (params)=>{
         return(
           <>
-          <Link to={"/user/"+params.row.id}>
-            <button className="userListEdit">Edit</button>
+          <Link to={"/parkownerrequest/"+params.row.id}>
+            <button className="userListEdit">View</button>
           </Link>
           
-          <DeleteOutlineIcon className="userListDelete" onClick={()=>handleDelete(params.row.id)}/>
+          {/* <DeleteOutlineIcon className="userListDelete" onClick={()=>handleDelete(params.row.id)}/> */}
           </>
         )
       }
@@ -47,7 +47,7 @@ export default function UserList() {
     return (
       <div className="listcontainer">
         <div className="userListHead">
-          <h3 className="userListHeader">Park Owners</h3>
+          <h3 className="userListHeader">Requests</h3>
         </div>
         <div className="userList" style={{ height: 400, marginTop: 80}}>
             <DataGrid className="userListData" rows={data} disableSelectionOnClick columns={columns} pageSize={5} checkboxSelection />

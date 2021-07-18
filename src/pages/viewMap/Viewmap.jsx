@@ -1,13 +1,12 @@
 import React from 'react';
 import { GoogleMap, withScriptjs, withGoogleMap } from "react-google-maps";
-import "./addtomap.css";
+import "./viewmap.css";
 import { Carousel, Form, Col, Row, Button } from 'react-bootstrap';
-import {Link} from "react-router-dom";
 
 function Map(){
     return (
         <GoogleMap
-            defaultZoom={10}
+            defaultZoom={15}
             defaultCenter={{lat:6.927079, lng: 79.861244}}
         />
     );
@@ -15,21 +14,23 @@ function Map(){
 
 const WrappedMap = withScriptjs(withGoogleMap(Map));
 
-export default function AddToMap() {
+export default function Viewmap() {
 
     return (
-        <div className="addtomap">
-            <h3 style={{ textAlign: 'center', marginTop: 10}}> Add Place to Map</h3>
-            <div className="map" style={{ marginLeft: 320}}>
+        <div className="viewmap">
+            <div className="viewmapheader">
+                <h3 className="mapheadertitle">Current Parking Locations</h3>
+            </div>
+            <div className="map">
                 <WrappedMap
                 googleMapURL ={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyCy9FSNPUvbExrqtBGFDsmIyMS71FwB5qw`}
                 loadingElement= { <div style={{ height: `100%` }}/>}
-                containerElement= { <div style={{ height: `300px`, width: `600px`}} />}
+                containerElement= { <div style={{ height: `500px`, width: `800px`}} />}
                 mapElement= { <div style={{ height: `100%` }} />}
                 />
             </div>
             
-            <div className="formhadle">
+            {/* <div className="formhadle">
                 <Form>
                     
                     <Row className="mb-3">
@@ -48,14 +49,11 @@ export default function AddToMap() {
                         <Button variant="success" type="submit" className="buttonsrearrange">
                             Add To Map
                         </Button>
-                       <Link to="/parkownerrequest/:userID"><Button variant="secondary" type="submit" className="buttonsrearrange">
-                            Back
-                        </Button></Link> 
                         
                     </div>
                     
                 </Form>
-            </div>
+            </div> */}
         </div>
 
     )

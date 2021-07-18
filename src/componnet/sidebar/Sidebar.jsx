@@ -10,6 +10,7 @@ import MapIcon from '@material-ui/icons/Map';
 import CreditCardIcon from '@material-ui/icons/CreditCard';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import EditIcon from '@material-ui/icons/Edit';
+import {Link} from 'react-router-dom';
 
 export default function Sidebar() {
     return (
@@ -19,34 +20,34 @@ export default function Sidebar() {
                     <h3 className="sidebarTitlle">Dashboard</h3>
                     <ul className="sidebarList">
                         <li className="sidebarListItem">
-                            <HomeIcon/>Home
+                            <HomeIcon/><Link to="/" style={{ textDecoration: 'none', color: 'black', marginLeft: 5}}>Home</Link>
                         </li>
                         <li className="sidebarListItem">
                             <AssessmentIcon/>Analytics
                         </li>
                         <li className="sidebarListItem">
-                            <MessageIcon/>Requests
+                            <MessageIcon/><Link to="/requests" style={{ textDecoration: 'none', color: 'black', marginLeft: 5}}>Requests</Link>
                         </li>
-                        <li className="sidebarListItem">
+                        {/* <li className="sidebarListItem">
                             <PersonAddIcon/>Add User
+                        </li> */}
+                        <li className="sidebarListItem">
+                            <PeopleIcon/><Link to="/users" style={{ textDecoration: 'none', color: 'black', marginLeft: 5}}>View Owners</Link>
                         </li>
                         <li className="sidebarListItem">
-                            <PeopleIcon/>View User
+                            <RecentActorsIcon/><Link to="/viewcustomers" style={{ textDecoration: 'none', color: 'black', marginLeft: 5}}>View Customers</Link>
                         </li>
                         <li className="sidebarListItem">
-                            <RecentActorsIcon/>View Customer
+                            <MapIcon/><Link to="/viewmap" style={{ textDecoration: 'none', color: 'black', marginLeft: 5}}>View Map</Link>
                         </li>
                         <li className="sidebarListItem">
-                            <MapIcon/>View Map
+                            <CreditCardIcon/><Link to="/receivedpayments" style={{ textDecoration: 'none', color: 'black', marginLeft: 5}}>Recieved Payments</Link>
                         </li>
                         <li className="sidebarListItem">
-                            <CreditCardIcon/>Recieved Payments
+                            <AssignmentIcon/><Link to="/report" style={{ textDecoration: 'none', color: 'black', marginLeft: 5}}>Reports</Link>
                         </li>
                         <li className="sidebarListItem">
-                            <AssignmentIcon/>Reports
-                        </li>
-                        <li className="sidebarListItem">
-                            <EditIcon/>Edit Profile
+                            <EditIcon/><Link to="/editprofile" style={{ textDecoration: 'none', color: 'black', marginLeft: 5}}>Edit Profile</Link>
                         </li>
                     </ul>
                 </div>

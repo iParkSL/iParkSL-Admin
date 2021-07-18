@@ -5,6 +5,7 @@ import { Carousel, Form, Col, Row, Button } from 'react-bootstrap';
 import park1 from './Car-park.jpg';
 import park2 from './multi-storey-car-park.jpg';
 import park3 from './park4.jpeg';
+import {Link} from "react-router-dom";
 
 export default function ParkOwnerReq() {
     return (
@@ -52,24 +53,24 @@ export default function ParkOwnerReq() {
                 <Form>
                     <Row className="mb-3">
                         <Form.Group as={Col} controlId="formGridEmail">
-                            <Form.Label>Email</Form.Label>
-                            <Form.Control type="email" placeholder="Enter email" />
+                            <Form.Label>Name</Form.Label>
+                            <Form.Control type="text" placeholder="" Value="Nimal Perera" />
                         </Form.Group>
 
                         <Form.Group as={Col} controlId="formGridPassword">
-                            <Form.Label>Password</Form.Label>
-                            <Form.Control type="password" placeholder="Password" />
+                            <Form.Label>Park Name</Form.Label>
+                            <Form.Control type="text" placeholder="" value="ABC Park" />
                         </Form.Group>
                     </Row>
                     <Row className="mb-3">
                         <Form.Group as={Col} controlId="formGridEmail">
                             <Form.Label>Address Line 1</Form.Label>
-                            <Form.Control type="text" placeholder="Address Line 1" />
+                            <Form.Control type="text" placeholder="" value="No 5 Borella " />
                         </Form.Group>
 
                         <Form.Group as={Col} controlId="formGridPassword">
                             <Form.Label>Address Line 2</Form.Label>
-                            <Form.Control type="text" placeholder="Addres Line 2" />
+                            <Form.Control type="text" placeholder="" value="Colombo 8"/>
                         </Form.Group>
                     </Row>
                     <Row className="mb-3">
@@ -80,28 +81,28 @@ export default function ParkOwnerReq() {
                                     inline
                                     label="CCTV"
                                     type="checkbox"
-                                    
+                                    checked
                                 />
                                 <Form.Check
                                     inline
                                     label="WiFi"
                                     type="checkbox"
-                                    
+                                    checked
                                 />
                                 <Form.Check
                                     inline
                                     label="Water"
                                     type= "checkbox"
-                                    
+                                    checked
                                 />
                             </div>
                         </Form.Group>
 
                     </Row>
                     <div className="buttons">
-                        <Button variant="success" type="submit" className="buttonsrearrange">
+                    <Link to="/addtomap"> <Button variant="success" type="submit" className="buttonsrearrange">
                             Accept
-                        </Button>
+                        </Button></Link>
                         <Button variant="danger" type="submit" className="buttonsrearrange">
                             Reject
                         </Button>

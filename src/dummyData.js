@@ -22,4 +22,62 @@
   },
     
   ];
+
+  export const userpaymentRows = [
+    { id: 1, username: 'Amal Perera', 
+      avatar : "https://images.pexels.com/photos/8196527/pexels-photo-8196527.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      email: "kamala@hotmail.com",
+      amount : 5000,
+  },
+  { id: 2, username: 'Amal Perera', 
+      avatar : "https://images.pexels.com/photos/8196527/pexels-photo-8196527.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      email: "kamala@hotmail.com",
+      amount : 5000,
+  },
+  { id: 3, username: 'Amal Perera', 
+      avatar : "https://images.pexels.com/photos/8196527/pexels-photo-8196527.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      email: "kamala@hotmail.com",
+      amount : 5000,
+  },
+  { id: 4, username: 'Amal Perera', 
+      avatar : "https://images.pexels.com/photos/8196527/pexels-photo-8196527.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      email: "kamala@hotmail.com",
+      amount : 5000,
+  },
+  { id: 5, username: 'Amal Perera', 
+      avatar : "https://images.pexels.com/photos/8196527/pexels-photo-8196527.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      email: "kamala@hotmail.com",
+      amount : 5000,
+  },
+    
+  ];
+
+  export const customerRows = [
+    { id: 1, username: 'Amal Perera', 
+      avatar : "https://images.pexels.com/photos/8196527/pexels-photo-8196527.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      email: "kamala@hotmail.com",
+      date : "2020.12.02",
+  },
+  { id: 2, username: 'Amal Perera', 
+      avatar : "https://images.pexels.com/photos/8196527/pexels-photo-8196527.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      email: "kamala@hotmail.com",
+      date : "2020.12.02",
+  },
+  { id: 3, username: 'Amal Perera', 
+      avatar : "https://images.pexels.com/photos/8196527/pexels-photo-8196527.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      email: "kamala@hotmail.com",
+      date : "2020.12.02",
+  },
+  { id: 4, username: 'Amal Perera', 
+      avatar : "https://images.pexels.com/photos/8196527/pexels-photo-8196527.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      email: "kamala@hotmail.com",
+      date : "2020.12.02",
+  },
+  { id: 5, username: 'Amal Perera', 
+      avatar : "https://images.pexels.com/photos/8196527/pexels-photo-8196527.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      email: "kamala@hotmail.com",
+      date : "2020.12.02",
+  },
+    
+  ];
   

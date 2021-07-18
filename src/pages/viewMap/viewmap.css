@@ -1,0 +1,16 @@
+.viewmap {
+    flex: 4;
+}
+
+.map{
+    margin-top: 50px;
+    margin-left: 220px;
+}
+
+.viewmapheader {
+    margin-top:20px
+}
+
+.mapheadertitle {
+    text-align: center;
+}
