@@ -50,7 +50,7 @@ export default function Requests() {
           <h3 className="userListHeader">Requests</h3>
         </div>
         <div className="userList" style={{ height: 400, marginTop: 80}}>
-            <DataGrid className="userListData" rows={data} disableSelectionOnClick columns={columns} pageSize={5} checkboxSelection />
+            <DataGrid className="userListData" rows={data} disableSelectionOnClick columns={columns} pageSize={8} checkboxSelection />
 
         </div>
       </div>
