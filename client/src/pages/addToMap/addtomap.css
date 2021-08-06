@@ -1,0 +1,32 @@
+.containersidebar {
+    /* flex: 1; */
+    display: flex;
+    flex-direction: row;
+}
+
+.addtomap {
+    flex: 4;
+    
+}
+
+.map{
+    margin-top: 50px;
+    margin-left: 420px;
+}
+
+.formhadle {
+    align-items: center;
+    justify-content: center;
+    max-width: 800px;
+    margin-top: 50px;
+    margin-left: 210px;
+}
+
+.buttons {
+    margin-left: 280px;
+    margin-top: -20px;
+}
+
+.buttonsrearrange {
+    margin-left: 10px;
+}

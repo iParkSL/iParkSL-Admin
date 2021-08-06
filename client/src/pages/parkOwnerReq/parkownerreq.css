@@ -1,0 +1,44 @@
+.containersidebar {
+    /* flex: 1; */
+    display: flex;
+    flex-direction: row;
+}
+
+.parkOwnerReq{
+    flex: 4;
+}
+
+.parkcarosel {
+    margin-top: 20px;
+    max-width: 600px;
+    max-height: 280px;
+    text-align: center;
+    margin-left: 300px;
+    /* align-items: center;
+    justify-content: center; */
+}
+
+.carouselimg{
+    max-height: 250px;
+}
+
+.item {
+    align-items: center;
+}
+
+.formhadle {
+    align-items: center;
+    justify-content: center;
+    max-width: 800px;
+    margin-top: 25px;
+    margin-left: 210px;
+}
+
+.buttons {
+    margin-left: 300px;
+    margin-top: -20px;
+}
+
+.buttonsrearrange {
+    margin-left: 10px;
+}

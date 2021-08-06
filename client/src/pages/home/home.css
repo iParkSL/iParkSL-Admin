@@ -1,0 +1,16 @@
+/* .fullcontainer {
+    display: flex;
+    flex-direction: row;
+
+} */
+
+
+.containersidebar {
+    /* flex: 1; */
+    display: flex;
+    flex-direction: row;
+}
+
+.home {
+    flex: 4;
+}
