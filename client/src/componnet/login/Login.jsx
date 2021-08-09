@@ -1,23 +1,27 @@
-import React, {useState} from 'react';
-import {Button, Col, Container, Form, Row} from "react-bootstrap";
+import React, { useState } from 'react';
+import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import "./login.css";
 import axios from "axios";
-import {useHistory} from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 const Login = () => {
 
+    // const history = useHistory();
     const history = useHistory();
 
     const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
+    const [password, setPassword] = useState("");   
 
-    const login = () => {
-        const data = {username: username, password: password};
+    const login = (e) => {
+        e.preventDefault();
+        const data = { username: username, password: password };
+        // console.log(data);
         axios.post("http://localhost:3001/auth/login", data)
-        .then((response)=>{
-            console.log(response.data);
-            history.push("/home");
-        });
+            .then((response) => {
+                if(response.data){
+                    history.push("/home");
+                }
+            });
     };
 
     return (
@@ -29,22 +33,22 @@ const Login = () => {
                         <Form>
                             <Form.Group controlId="formBasicEmail">
                                 <Form.Label>Username</Form.Label>
-                                <Form.Control type="text" placeholder="Enter username" onChange={(e)=>{
+                                <Form.Control type="text" placeholder="Username" onChange={(e) => {
                                     setUsername(e.target.value);
-                                }}/>
+                                }} />
                             </Form.Group>
 
                             <Form.Group controlId="formBasicPassword">
                                 <Form.Label>Password</Form.Label>
-                                <Form.Control type="password" placeholder="Password" onChange={(e)=>{
+                                <Form.Control type="password" placeholder="Password" onChange={(e) => {
                                     setPassword(e.target.value);
-                                }}/>
+                                }} />
                             </Form.Group>
 
                             <Button className="btn-login" variant="warning btn-block" type="submit" onClick={login}>
                                 Login
                             </Button>
-                            
+
                         </Form>
                     </Col>
                 </Row>
