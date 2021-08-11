@@ -6,7 +6,6 @@ import { useHistory } from 'react-router-dom';
 
 const Login = () => {
 
-    // const history = useHistory();
     const history = useHistory();
 
     const [username, setUsername] = useState("");
@@ -18,7 +17,9 @@ const Login = () => {
         // console.log(data);
         axios.post("http://localhost:3001/auth/login", data)
             .then((response) => {
-                if(response.data){
+                if(response.data.error){
+                    alert(response.data.error);
+                }else {
                     history.push("/home");
                 }
             });
