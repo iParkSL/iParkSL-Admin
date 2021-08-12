@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom';
 
 const Login = () => {
 
-    const history = useHistory();
+    let history = useHistory();
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");   
@@ -20,6 +20,7 @@ const Login = () => {
                 if(response.data.error){
                     alert(response.data.error);
                 }else {
+                    sessionStorage.setItem("accessToken", response.data);
                     history.push("/home");
                 }
             });
