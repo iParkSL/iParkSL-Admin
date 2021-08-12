@@ -9,7 +9,7 @@ const validateToken = (req, res, next) => {
     
     try{
         const validToken = verify(accessToken, "iparkslsecret");
-        
+        req.user = validToken;
         if(validToken){
             return next();
         }    

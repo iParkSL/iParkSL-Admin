@@ -1,15 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import "./login.css";
 import axios from "axios";
 import { useHistory } from 'react-router-dom';
+import { AuthContext } from '../../helpers/AuthContext';
 
 const Login = () => {
 
-    let history = useHistory();
-
     const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");   
+    const [password, setPassword] = useState("");
+    const {setAuthState} = useContext(AuthContext);   
+
+    let history = useHistory();
 
     const login = (e) => {
         e.preventDefault();
@@ -20,7 +22,8 @@ const Login = () => {
                 if(response.data.error){
                     alert(response.data.error);
                 }else {
-                    sessionStorage.setItem("accessToken", response.data);
+                    localStorage.setItem("accessToken", response.data);
+                    // setAuthState(true);
                     history.push("/home");
                 }
             });

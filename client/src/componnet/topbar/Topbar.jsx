@@ -5,10 +5,40 @@ import avatar from './avatar.png'
 import { Navbar, Nav } from 'react-bootstrap';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import Avatar from '@material-ui/core/Avatar';
-
+import { AuthContext } from '../../helpers/AuthContext';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 
 export default function Topbar() {
+
+    const [authState, setAuthState] = useState(false);
+
+    let history = useHistory();
+
+    useEffect(() => {
+        axios.get("http://localhost:3001/auth/auth",{
+            headers: {
+                accessToken: localStorage.getItem("accessToken"),
+            },
+        }).then((response)=>{
+            if(response.data.error){
+                setAuthState(false);
+            }
+            else {
+                setAuthState(true);
+            }
+        });
+    });
+
+    const logout = () =>{
+        localStorage.removeItem("accessToken");
+        setAuthState(false);
+        history.push("/");
+         };
+
     return (
+        <AuthContext.Provider value={{authState, setAuthState}}>
         <div>
         <Navbar className="topbar">
             <div className="container">
@@ -18,13 +48,21 @@ export default function Topbar() {
                 <Nav.Link href="#features">Features</Nav.Link>
                 <Nav.Link href="#pricing">Pricing</Nav.Link>
             </Nav> */}
+
+            {!authState ? (
+                <>
+                </>
+            ) : (
+                <button onClick={logout}>Logout</button>
+            ) }
                 
             </div>
-            <div className="icon-container">
+            {/* <div className="icon-container">
                     <NotificationsIcon className="icon-container-item item1"/><span/>
                     <Avatar alt="Remy Sharp" src={avatar} className="icon-container-item"/>
-                </div>
+                </div> */}
         </Navbar>
         </div>
+        </AuthContext.Provider>
     );
 }
