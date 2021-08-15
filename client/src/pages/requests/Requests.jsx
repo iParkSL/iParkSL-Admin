@@ -7,9 +7,19 @@ import { Link } from "react-router-dom";
 // import { useState } from 'react';
 import Topbar from '../../componnet/topbar/Topbar';
 import Sidebar from '../../componnet/sidebar/Sidebar';
+import axios from "axios";
+import { useState, useEffect } from 'react';
 
 
 export default function Requests() {
+
+  const[listOfOwners, setListOfOwners] = useState([]);
+
+  useEffect(()=>{
+    axios.get("http://localhost:3001/owners").then((response)=>{
+      setListOfOwners(response.data);
+    });
+  },[]);
 
   // const [data, setData] = useState(userRows);
 
@@ -69,12 +79,17 @@ export default function Requests() {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <th scope="row">Raman</th>
-                    <td>Mark</td>
-                    <td>Otto@gmail.com</td>
-                    <td><Link to="/"><button className="btn btn-success">View</button></Link></td>
-                  </tr>
+                  {listOfOwners.map((value, key)=>{
+                    return (
+                      <tr>
+                        <td>{value.username}</td>
+                        <td>{value.firstname}</td>
+                        <td>{value.email}</td>
+                        <td><Link to="/"><button className="btn btn-success">View</button></Link></td>
+                      </tr>
+                    );
+                  })}
+                  
                 </tbody>
               </table>
         </div>
