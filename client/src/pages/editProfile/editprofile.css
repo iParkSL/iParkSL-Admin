@@ -7,3 +7,29 @@
 .editprofile {
     flex: 4;
 }
+
+.editTitle {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.editImg {
+    text-align: center;
+}
+
+.updateImg{
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+    object-fit: cover;
+    margin-top: 10px;
+}
+
+.editContainer{
+    max-width: 800px;
+    margin: 20px auto;
+}
+
+.row {
+    margin-top: 20px;
+}

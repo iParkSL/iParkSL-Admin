@@ -17,3 +17,12 @@
     margin-top: 8px;
     margin-left: 20px;
 }
+
+.logoutButton {
+    color: #ffb907;
+    background-color: black;
+    width: 100px;
+    height: 40px;
+    margin-right: -150px;
+    border-radius: 10px;
+}

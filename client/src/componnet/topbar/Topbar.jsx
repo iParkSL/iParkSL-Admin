@@ -53,7 +53,7 @@ export default function Topbar() {
                 <>
                 </>
             ) : (
-                <button onClick={logout}>Logout</button>
+                <button onClick={logout} className="logoutButton">Logout</button>
             ) }
                 
             </div>
