@@ -3,17 +3,20 @@ import './requests.css';
 // import { getDefaultNormalizer } from '@testing-library/react';
 // import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
 // import {userRows} from '../../dummyData';
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 // import { useState } from 'react';
 import Topbar from '../../componnet/topbar/Topbar';
 import Sidebar from '../../componnet/sidebar/Sidebar';
 import axios from "axios";
 import { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 
 
 export default function Requests() {
 
   const[listOfOwners, setListOfOwners] = useState([]);
+
+  let history = useHistory();
 
   useEffect(()=>{
     axios.get("http://localhost:3001/owners").then((response)=>{
@@ -85,7 +88,9 @@ export default function Requests() {
                         <td>{value.username}</td>
                         <td>{value.firstname}</td>
                         <td>{value.email}</td>
-                        <td><Link to="/"><button className="btn btn-success">View</button></Link></td>
+                        <td><button className="btn btn-success" onClick={()=>{
+                          history.push(`/parkownerrequest/${value.id}`);
+                        }}>View</button></td>
                       </tr>
                     );
                   })}

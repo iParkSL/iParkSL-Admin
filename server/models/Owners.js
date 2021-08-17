@@ -27,5 +27,10 @@ module.exports = (sequelize, DataTypes) => {
         // },
     });
 
+    Owners.associate = (models) => {
+        Owners.hasMany(models.ParkRequests, {
+            onDelete: "cascade",
+        });
+    };
     return Owners;
 };

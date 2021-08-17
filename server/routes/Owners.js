@@ -7,4 +7,10 @@ router.get("/", async(req, res)=>{
     res.json(listOfOwners);
 });
 
+router.get("/byId/:id", async (req, res)=>{
+    const id = req.params.id;
+    const owner = await Owners.findByPk(id);
+    res.json(owner);
+});
+
 module.exports = router;

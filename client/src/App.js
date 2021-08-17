@@ -40,7 +40,7 @@ function App() {
         <Route path="/user/:userID">
           <User/>
         </Route>
-        <Route path="/parkownerrequest/:userID">
+        <Route path="/parkownerrequest/:id">
           <ParkOwnerReq/>
         </Route>
         <Route path="/addtomap">
