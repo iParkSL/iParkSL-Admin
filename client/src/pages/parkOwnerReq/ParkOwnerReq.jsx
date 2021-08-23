@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import "./parkownerreq.css";
 import { Carousel, Form, Col, Row, Button } from 'react-bootstrap';
+import {Image} from "cloudinary-react";
 
 import park1 from './Car-park.jpg';
 import park2 from './multi-storey-car-park.jpg';
@@ -37,26 +38,29 @@ export default function ParkOwnerReq() {
                             <Carousel fade>
 
                                 <Carousel.Item>
-                                    <img
+                                    {/* <img
                                         className="d-block w-100 carouselimg"
                                         src={park1}
                                         alt="First slide"
-                                    />
+                                    /> */}
+                                    <Image className="d-block w-100 carouselimg" cloudName = "kalana96" publicId={reqPark.image1}/>
                                 </Carousel.Item>
 
                                 <Carousel.Item>
-                                    <img
+                                    {/* <img
                                         className="d-block w-100 carouselimg"
                                         src={park2}
                                         alt="Second slide"
-                                    />
+                                    /> */}
+                                    <Image className="d-block w-100 carouselimg" cloudName = "kalana96" publicId={reqPark.image2}/>
                                 </Carousel.Item>
                                 <Carousel.Item>
-                                    <img
+                                    {/* <img
                                         className="d-block w-100 carouselimg"
                                         src={park3}
                                         alt="Third slide"
-                                    />
+                                    /> */}
+                                    <Image className="d-block w-100 carouselimg" cloudName = "kalana96" publicId={reqPark.image3}/>
                                 </Carousel.Item>
                             </Carousel>
                         </div>
