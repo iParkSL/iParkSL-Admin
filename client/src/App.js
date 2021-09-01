@@ -43,9 +43,9 @@ function App() {
         <Route path="/parkownerrequest/:id">
           <ParkOwnerReq/>
         </Route>
-        <Route path="/addtomap">
+        {/* <Route path="/addtomap">
           <AddToMap/>
-        </Route>
+        </Route> */}
         <Route path="/report">
           <Report/>
         </Route>
