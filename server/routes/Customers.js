@@ -18,4 +18,9 @@ router.delete("/byId/:id", async (req, res) => {
     res.json("Delete Successfully");
 });
 
+router.get("/findcustomers", async (req, res) => {
+    const numberofcus = await Customers.findAndCountAll();
+    res.json(numberofcus);
+})
+
 module.exports = router;

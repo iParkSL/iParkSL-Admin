@@ -13,4 +13,9 @@ router.get("/byId/:id", async (req, res)=>{
     res.json(owner);
 });
 
+router.get("/findrequests", async (req, res) => {
+  const numberofreq = await Owners.findAndCountAll();
+  res.json(numberofreq);
+});
+
 module.exports = router;

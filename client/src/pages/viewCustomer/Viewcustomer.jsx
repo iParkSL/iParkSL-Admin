@@ -9,9 +9,12 @@ import { useState, useEffect } from 'react';
 import Topbar from '../../componnet/topbar/Topbar';
 import Sidebar from '../../componnet/sidebar/Sidebar';
 import axios from 'axios';
+import { useHistory } from "react-router-dom";
 
 
 export default function ViewCustomers() {
+
+  let history = useHistory();
 
   // let { id } = useParams();
 
@@ -24,7 +27,9 @@ export default function ViewCustomers() {
   }, []);
 
   const handleDelete = (id) => {
-    axios.delete(`http://localhost:3001/customers/byId/${id}`);
+    axios.delete(`http://localhost:3001/customers/byId/${id}`).then(() => {
+      history.push("/viewcustomer");
+    });
   };
 
   // const [data, setData] = useState(customerRows);
