@@ -14,11 +14,14 @@ const db = require('./models');
 const adminRouter = require("./routes/Admin");
 app.use("/auth", adminRouter);
 
-const ownerRouter = require("./routes/Owners");
-app.use("/owners", ownerRouter);
+const ownerreqRouter = require("./routes/Owners");
+app.use("/owners", ownerreqRouter);
 
 const customerRouter = require("./routes/Customers");
 app.use("/customers", customerRouter);
+
+const viewownersRouter = require("./routes/Viewowners");
+app.use("/viewowners", viewownersRouter);
 
 const requestRouter = require("./routes/ParkRequests");
 app.use("/req", requestRouter);

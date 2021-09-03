@@ -8,6 +8,7 @@ import axios from "axios";
 export default function FeaturedInfo() {
     const [cuscount, setCusCount] = useState();
     const [reqcount, setReqCount] = useState();
+    const [ownercount, setOwnerCount] = useState();
     useEffect(() => {
         axios
           .get("http://localhost:3001/customers/findcustomers")
@@ -18,6 +19,11 @@ export default function FeaturedInfo() {
         axios.get("http://localhost:3001/owners/findrequests").then((response) => {
             setReqCount(response.data.count);
         });
+        axios
+          .get("http://localhost:3001/viewowners/findrequests")
+          .then((response) => {
+            setOwnerCount(response.data.count);
+          });
     }, [])
     return (
       <div className="featured">
@@ -27,7 +33,7 @@ export default function FeaturedInfo() {
             style={{ fontSize: 40 }}
           />
           <div className="featuredTitle">Current Active Park Owners</div>
-          <div className="featuredNum">18</div>
+          <div className="featuredNum">{ownercount}</div>
         </div>
         <div className="featuredItem-green">
           <LocalParkingIcon
