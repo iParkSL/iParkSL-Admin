@@ -27,8 +27,12 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
     },
     phonenumber: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    amount: {
+      type: DataTypes.STRING,
+      allowNull: false,
     },
   });
 
