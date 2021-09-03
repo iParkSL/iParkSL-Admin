@@ -17,6 +17,9 @@ app.use("/auth", adminRouter);
 const ownerRouter = require("./routes/Owners");
 app.use("/owners", ownerRouter);
 
+const customerRouter = require("./routes/Customers");
+app.use("/customers", customerRouter);
+
 const requestRouter = require("./routes/ParkRequests");
 app.use("/req", requestRouter);
 

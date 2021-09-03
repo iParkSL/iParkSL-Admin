@@ -83,9 +83,18 @@ import {
 // }
 // export default Editprofile;
 
-import React from 'react'
+import React, { useEffect, useState } from 'react';
+import axios from "axios";
 
 export default function Editprofile() {
+
+    const [admindata, setAdminData] = useState({});
+
+    useEffect(() => {
+        axios.get("http://localhost:3001/auth/getdetails").then((response) => {
+            setAdminData(response.data);
+         });
+    }, [])
     return (
         <div className="fullcontainer">
             <Topbar/>
@@ -93,6 +102,7 @@ export default function Editprofile() {
                 <Sidebar/>
                 <div className="editprofile">
                     <div className="editTitle"><h3>Edit Profile</h3></div>
+
                     <div className="editImg">
                         <img className="updateImg" src="https://images.pexels.com/photos/1152994/pexels-photo-1152994.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" alt="" />
                         <label htmlFor="file">
@@ -111,7 +121,7 @@ export default function Editprofile() {
                         </div>
                         <div className="row">
                             <div className="col">
-                                <input type="text" className="form-control" placeholder="username" />
+                                <input type="text" className="form-control" placeholder={admindata.username} />
                             </div>
                         </div>
                         <div className="row">

@@ -35,6 +35,11 @@ router.post("/login", async (req, res) => {
     
 });
 
+router.get("/getdetails", async (req, res) => {
+  const admindetails = await Admin.findAll();
+  res.json(admindetails);
+});
+
 router.get("/auth", validateToken, (req, res)=>{
     res.json(req.user);
 });
