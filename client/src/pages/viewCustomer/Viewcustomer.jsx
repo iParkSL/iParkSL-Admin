@@ -7,12 +7,15 @@ import Sidebar from "../../componnet/sidebar/Sidebar";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import ReactPaginate from "react-paginate";
+import SearchIcon from "@material-ui/icons/Search";
+import CloseIcon from "@material-ui/icons/Close";
 
 export default function ViewCustomers() {
   let history = useHistory();
 
   // let { id } = useParams();
-
+  const [filteredData, setFilteredData] = useState([]);
+  const [wordEntered, setWordEntered] = useState("");
   const [listcustomer, setCustomer] = useState([]);
   const [pageNumber, setPageNumber] = useState(0);
 
@@ -28,10 +31,49 @@ export default function ViewCustomers() {
     });
   };
 
+  const handleFilter = (event) => {
+    const searchWord = event.target.value;
+    setWordEntered(searchWord);
+    const newFilter = listcustomer.filter((value) => {
+      return value.firstname.toLowerCase().includes(searchWord.toLowerCase());
+    });
+
+    if (searchWord === "") {
+      setFilteredData([]);
+    } else {
+      setFilteredData(newFilter);
+    }
+  };
+
+  const clearInput = () => {
+    setFilteredData([]);
+    setWordEntered("");
+  };
+
   const custPerPage = 6;
   const pagesVisited = pageNumber * custPerPage;
 
   const displayCustomers = listcustomer
+    .slice(pagesVisited, pagesVisited + custPerPage)
+    .map((value, key) => {
+      return (
+        <tr>
+          <td>{value.username}</td>
+          <td>{value.firstname}</td>
+          <td>{value.email}</td>
+          <td>
+            <button
+              className="btn btn-danger"
+              onClick={() => handleDelete(value.id)}
+            >
+              Delete
+            </button>
+          </td>
+        </tr>
+      );
+    });
+  
+  const newFilteredData = filteredData
     .slice(pagesVisited, pagesVisited + custPerPage)
     .map((value, key) => {
       return (
@@ -67,7 +109,24 @@ export default function ViewCustomers() {
           <div className="userListHead">
             <h3 className="userListHeader">View Customers</h3>
           </div>
-          <div className="userList" style={{ height: 400, marginTop: 80 }}>
+          <div className="search">
+            <div className="searchInputs">
+              <input
+                type="text"
+                placeholders="Enter Name"
+                value={wordEntered}
+                onChange={handleFilter}
+              />
+              <div className="searchIcon">
+                {filteredData.length === 0 ? (
+                  <SearchIcon />
+                ) : (
+                  <CloseIcon id="clearBtn" onClick={clearInput} />
+                )}
+              </div>
+            </div>
+          </div>
+          <div className="userList" style={{ height: 400, marginTop: 20 }}>
             {/* <DataGrid className="userListData" rows={data} disableSelectionOnClick columns={columns} pageSize={8} checkboxSelection /> */}
             <table class="table">
               <thead>
@@ -78,7 +137,9 @@ export default function ViewCustomers() {
                   <th scope="col">Action</th>
                 </tr>
               </thead>
-              <tbody>{displayCustomers}</tbody>
+              <tbody>
+                {filteredData.length === 0 ? displayCustomers : newFilteredData}
+              </tbody>
             </table>
             <ReactPaginate
               previousLabel={"Previous"}
