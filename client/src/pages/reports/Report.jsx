@@ -11,6 +11,8 @@ function Report() {
   const [getItems, setGetItems] = useState([]);
   const [show, setShow] = useState(false);
   const [showbtn, setShowBtn] = useState(false);
+  const [fromDate, setFromDate] = useState("");
+  const [toDate, setToData] = useState("");
 
   const container = useRef(null);
   const pdfExportComponent = React.useRef(null);
@@ -60,6 +62,7 @@ function Report() {
         <div className="reportContainer">
           <div className="titleContainer">
             <h2 className="userTitle">Reports</h2>
+            {fromDate}
           </div>
           <div className="selectContainer">
             <select
@@ -69,7 +72,9 @@ function Report() {
                 setReportState(e.target.value);
               }}
             >
-              <option selected>Select Report Type</option>
+              <option selected disabled>
+                Select Report Type
+              </option>
               <option value="Received Payment List">
                 Recived Payment List
               </option>
@@ -78,10 +83,22 @@ function Report() {
             </select>
 
             <label className="label">From</label>
-            <input type="Date" name="name" className="input" />
+            <input
+              type="Date"
+              name="name"
+              className="input"
+              onChange={(e) => setFromDate(e.target.value)}
+            />
 
             <label className="label">To</label>
-            <input type="Date" name="name" className="input" />
+            <input
+              type="Date"
+              name="name"
+              className="input"
+              onChange={(e) => setToData(e.target.value)}
+            />
+            {toDate}
+            
           </div>
           <div className="buttonContainer">
             <button className="btn btn-warning" onClick={handleDownload}>
@@ -101,46 +118,52 @@ function Report() {
               </div>
             ) : null}
           </div>
+          <div className="generated-file">
+            {show ? (
+              <PDFExport
+                ref={pdfExportComponent}
+                paperSize="auto"
+                margin={40}
+                fileName={`Report for ${new Date().getFullYear()}${reportState}`}
+                author="iParkSL Team"
+              >
+                <div className="tableContainer" ref={container}>
+                  <div className="reportHeading">
+                    <h3>{reportState}</h3>
+                  </div>
+                  <div className="reportTable">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th scope="col">Username</th>
+                          <th scope="col">First Name</th>
+                          <th scope="col">Email</th>
+                          <th scope="col">Address Line 1</th>
+                          <th scope="col">Address Line 2</th>
+                          <th scope="col">Phone Number</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {getItems.map((value, key) => {
+                          return (
+                            <tr>
+                              <td>{value.username}</td>
+                              <td>{value.firstname}</td>
+                              <td>{value.email}</td>
+                              <td>{value.address_line1}</td>
+                              <td>{value.address_line2}</td>
+                              <td>{value.phonenumber}</td>
+                            </tr>
+                          );
+                        })}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </PDFExport>
+            ) : null}
+          </div>
         </div>
-        {show ? (
-          <PDFExport
-            ref={pdfExportComponent}
-            paperSize="auto"
-            margin={40}
-            fileName={`Report for ${new Date().getFullYear()}`}
-            author="iParkSL Team"
-          >
-            <div className="tableContainer" ref={container}>
-              <h3>{reportState}</h3>
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th scope="col">Username</th>
-                    <th scope="col">First Name</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Address Line 1</th>
-                    <th scope="col">Address Line 2</th>
-                    <th scope="col">Phone Number</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {getItems.map((value, key) => {
-                    return (
-                      <tr>
-                        <td>{value.username}</td>
-                        <td>{value.firstname}</td>
-                        <td>{value.email}</td>
-                        <td>{value.address_line1}</td>
-                        <td>{value.address_line2}</td>
-                        <td>{value.phonenumber}</td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-            </div>
-          </PDFExport>
-        ) : null}
       </div>
     </div>
   );

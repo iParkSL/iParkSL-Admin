@@ -1,109 +1,153 @@
-import './userList.css';
-// import { DataGrid } from '@material-ui/data-grid';
-// import { getDefaultNormalizer } from '@testing-library/react';
-// import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
-// import {userRows} from '../../dummyData';
-// import { Link } from "react-router-dom";
-import { useState, useEffect } from 'react';
-import Topbar from '../../componnet/topbar/Topbar';
-import Sidebar from '../../componnet/sidebar/Sidebar';
+import "./userList.css";
+
+import { useState, useEffect } from "react";
+import Topbar from "../../componnet/topbar/Topbar";
+import Sidebar from "../../componnet/sidebar/Sidebar";
 import axios from "axios";
+import ReactPaginate from "react-paginate";
+import SearchIcon from "@material-ui/icons/Search";
+import CloseIcon from "@material-ui/icons/Close";
 
 export default function UserList() {
+  const [listowners, setOwners] = useState([]);
+  const [pageNumber, setPageNumber] = useState(0);
+  const [filteredData, setFilteredData] = useState([]);
+  const [wordEntered, setWordEntered] = useState("");
 
-    const [listowners, setOwners] = useState([]);
+  useEffect(() => {
+    axios.get("http://localhost:3001/viewowners").then((response) => {
+      setOwners(response.data);
+    });
+  }, []);
 
-    useEffect(() => {
-      axios.get("http://localhost:3001/viewowners").then((response) => {
-        setOwners(response.data);
-      });
-    }, []);
+  const handleDelete = (id) => {
+    axios.delete(`http://localhost:3001/viewowners/byId/${id}`).then(() => {
+      // history.push("/viewcustomer");
+    });
+  };
 
-    const handleDelete = (id) => {
-      axios.delete(`http://localhost:3001/viewowners/byId/${id}`).then(() => {
-        // history.push("/viewcustomer");
-      });
-    };
+  const handleFilter = (event) => {
+    const searchWord = event.target.value;
+    setWordEntered(searchWord);
+    const newFilter = listowners.filter((value) => {
+      return value.firstname.toLowerCase().includes(searchWord.toLowerCase());
+    });
 
-  // const [data, setData] = useState(userRows);
+    if (searchWord === "") {
+      setFilteredData([]);
+    } else {
+      setFilteredData(newFilter);
+    }
+  };
 
-  // const handleDelete = (id)=>{
-  //   setData(data.filter(item=>item.id !== id));
-  // }
+  const clearInput = () => {
+    setFilteredData([]);
+    setWordEntered("");
+  };
 
-  // const columns = [
-  //   { field: 'id', headerName: 'ID', width: 100 },
-  //   { field: 'user', headerName: 'User', width: 180, renderCell: (params)=>{
-  //       return (
-  //         <div className="userListUser">
-  //           <img className="userListImg" src={params.row.avatar}/>
-  //           {params.row.username}
-  //         </div>
-  //       )
-  //   } },
-  //   { field: 'email', headerName: 'Email', width: 180 },
-  //   {
-  //     field: 'action',
-  //     headerName: 'Actions',
-  //     width: 150,
-  //     renderCell: (params)=>{
-  //       return(
-  //         <>
-  //         <Link to={"/user/"+params.row.id}>
-  //           <button className="userListEdit">Edit</button>
-  //         </Link>
-          
-  //         <DeleteOutlineIcon className="userListDelete" onClick={()=>handleDelete(params.row.id)}/>
-  //         </>
-  //       )
-  //     }
-  //   },
-    
-  // ];
+  const ownersPerPage = 6;
+  const pagesVisited = pageNumber * ownersPerPage;
+
+  const displayOwners = listowners
+    .slice(pagesVisited, pagesVisited + ownersPerPage)
+    .map((value, key) => {
+      return (
+        <tr>
+          <td>{value.username}</td>
+          <td>{value.firstname}</td>
+          <td>{value.email}</td>
+          <td>
+            <button
+              className="btn btn-danger"
+              onClick={() => handleDelete(value.id)}
+            >
+              Delete
+            </button>
+          </td>
+        </tr>
+      );
+    });
+  
+  const newFilteredData = filteredData.map((value, key) => {
     return (
-      <div className="fullcontainer">
-        <Topbar />
-        <div className="containersidebar">
-          <Sidebar />
+      <tr>
+        <td>{value.username}</td>
+        <td>{value.firstname}</td>
+        <td>{value.email}</td>
+        <td>
+          <button
+            className="btn btn-danger"
+            onClick={() => handleDelete(value.id)}
+          >
+            Delete
+          </button>
+        </td>
+      </tr>
+    );
+  });
+  
+  const pageCount = Math.ceil(listowners.length / ownersPerPage);
 
-          <div className="listcontainer">
-            <div className="userListHead">
-              <h3 className="userListHeader">Park Owners</h3>
+  const changePage = ({ selected }) => {
+    setPageNumber(selected);
+  };
+
+  return (
+    <div className="fullcontainer">
+      <Topbar />
+      <div className="containersidebar">
+        <Sidebar />
+
+        <div className="listcontainer">
+          <div className="userListHead">
+            <h3 className="userListHeader">Park Owners</h3>
+          </div>
+          <div className="search">
+            <div className="searchInputs">
+              <input
+                type="text"
+                placeholder="Enter Name"
+                value={wordEntered}
+                onChange={handleFilter}
+              />
+              <div className="searchIcon">
+                {filteredData.length === 0 ? (
+                  <SearchIcon />
+                ) : (
+                  <CloseIcon id="clearBtn" onClick={clearInput} />
+                )}
+              </div>
             </div>
-            <div className="userList" style={{ height: 400, marginTop: 80 }}>
-              {/* <DataGrid className="userListData" rows={data} disableSelectionOnClick columns={columns} pageSize={8} checkboxSelection /> */}
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th scope="col">Username</th>
-                    <th scope="col">First Name</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {listowners.map((value, key) => {
-                    return (
-                      <tr>
-                        <td>{value.username}</td>
-                        <td>{value.firstname}</td>
-                        <td>{value.email}</td>
-                        <td>
-                          <button
-                            className="btn btn-danger"
-                            onClick={() => handleDelete(value.id)}
-                          >
-                            Delete
-                          </button>
-                        </td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-            </div>
+          </div>
+          <div className="userList" style={{ height: 400, marginTop: 20 }}>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Username</th>
+                  <th scope="col">First Name</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {" "}
+                {filteredData.length === 0 ? displayOwners : newFilteredData}
+              </tbody>
+            </table>
+            <ReactPaginate
+              previousLabel={"Previous"}
+              nextLabel={"Next"}
+              pageCount={pageCount}
+              onPageChange={changePage}
+              containerClassName={"paginationBttns"}
+              previousLinkClassName={"previousBttn"}
+              nextLinkClassName={"nextBttn"}
+              disabledClassName={"paginationDisabled"}
+              activeClassName={"paginationActive"}
+            />
           </div>
         </div>
       </div>
-    );
+    </div>
+  );
 }

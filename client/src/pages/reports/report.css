@@ -30,12 +30,18 @@
   margin-top: 20px;
   /* margin-left: 10px; */
 }
-.custom-select{
+.custom-select {
   max-width: 200px;
 }
-.tableContainer{
+.tableContainer {
   display: flex;
-  flex-direction: row;
-  
+  flex-direction: column;
 }
 
+.reportHeading {
+  text-align: center;
+}
+
+.btn-success {
+  margin-top: -30px;
+}
