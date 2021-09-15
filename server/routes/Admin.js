@@ -35,13 +35,29 @@ router.post("/login", async (req, res) => {
     
 });
 
-router.get("/getdetails", async (req, res) => {
-  const admindetails = await Admin.findAll();
-  res.json(admindetails);
-});
+
 
 router.get("/auth", validateToken, (req, res)=>{
     res.json(req.user);
+});
+
+router.put("/changepassword",validateToken, async (req, res) => {
+    const { oldPassword, newPassword } = req.body;
+    
+    const user = await Admin.findOne({ where: { username: req.user.username } });
+
+    bcrypt.compare(oldPassword, user.password).then((match) => {
+      if (!match)
+            res.json({ error: "Wrong Password Entered!" });
+        
+        bcrypt.hash(newPassword, 10).then((hash) => {
+            Admin.update({
+                password: hash
+            },{where:{username: req.user.username}}
+          );
+          res.json("SUCCESS");
+        });
+    });
 });
 
 module.exports = router;

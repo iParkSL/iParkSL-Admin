@@ -23,11 +23,17 @@ app.use("/customers", customerRouter);
 const viewownersRouter = require("./routes/Viewowners");
 app.use("/viewowners", viewownersRouter);
 
+const reportviewownersRouter = require("./routes/ReportViewowners");
+app.use("/reportviewowners", reportviewownersRouter);
+
 const requestRouter = require("./routes/ParkRequests");
 app.use("/req", requestRouter);
 
 const paymentsRouter = require("./routes/ReceivedPayments");
 app.use("/receivedpayments", paymentsRouter);
+
+const reportpaymentsRouter = require("./routes/ReportReceivedPayments");
+app.use("/reportreceivedpayments", reportpaymentsRouter);
 
 const genereateReportRouter = require("./routes/GenereateReport");
 app.use("/generatereport", genereateReportRouter);

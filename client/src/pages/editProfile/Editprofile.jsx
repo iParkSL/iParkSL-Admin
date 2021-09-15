@@ -85,41 +85,63 @@ import {
 
 import React, { useEffect, useState } from 'react';
 import axios from "axios";
+import { useHistory } from "react-router";
 
 export default function Editprofile() {
 
-    const [admindata, setAdminData] = useState({});
+    const history = useHistory();
 
-    useEffect(() => {
-        axios.get("http://localhost:3001/auth/getdetails").then((response) => {
-            setAdminData(response.data);
-         });
-    }, [])
+    const [oldPassword, setOldPassword] = useState("");
+    const [newPassword, setNewPassword] = useState("");
+
+    const changePassword = () => {
+        axios.put(
+            "http://localhost:3001/auth/changepassword",
+            {
+                oldPassword: oldPassword,
+                newPassword: newPassword,
+            },
+            {
+                headers: {
+                    accessToken: localStorage.getItem("accessToken"),
+                },
+            }
+        ).then((response) => {
+            if (response.data.error) {
+                alert(response.data.error)
+            } else {
+                alert("Successfully Changed");
+                history.push("/");
+            }
+        });
+    }
+
+    
     return (
         <div className="fullcontainer">
             <Topbar/>
             <div className="containersidebar">
                 <Sidebar/>
                 <div className="editprofile">
-                    <div className="editTitle"><h3>Edit Profile</h3></div>
+                    <div className="editTitle"><h3>Change Password</h3></div>
 
-                    <div className="editImg">
+                    {/* <div className="editImg">
                         <img className="updateImg" src="https://images.pexels.com/photos/1152994/pexels-photo-1152994.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" alt="" />
                         <label htmlFor="file">
                             <Publish className="userUpdateIcon" />
                         </label>
                         <input type="file" id="file" style={{ display: "none" }} />
-                    </div>
+                    </div> */}
                     <div className="editContainer">
                         <div className="row">
                             <div className="col">
-                                <input type="text" className="form-control" placeholder="First Name" />
+                                <input type="password" className="form-control" placeholder="Old Password" onChange={ (event)=>{setOldPassword(event.target.value)}}/>
                             </div>
                             <div className="col">
-                                <input type="text" className="form-control" placeholder="Last Name" />
+                                <input type="password" className="form-control" placeholder="New Password" onChange={(event) => { setNewPassword(event.target.value) }}/>
                             </div>
                         </div>
-                        <div className="row">
+                        {/* <div className="row">
                             <div className="col">
                                 <input type="text" className="form-control" placeholder={admindata.username} />
                             </div>
@@ -133,10 +155,10 @@ export default function Editprofile() {
                             <div className="col">
                                 <input type="password" className="form-control" placeholder="password" />
                             </div>
-                        </div>
+                        </div> */}
                         <div className="row">
                             <div className="col">
-                                <button className="btn btn-warning">Update</button>
+                                <button className="btn btn-warning" onClick={changePassword}>Change Password</button>
                             </div>
                         </div>
                     </div>

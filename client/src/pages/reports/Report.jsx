@@ -18,9 +18,10 @@ function Report() {
   const pdfExportComponent = React.useRef(null);
 
   const handleDownload = (e) => {
+    const data = {fromDate: fromDate, toDate: toDate}
     // e.preventDefault();
     // if (reportState === 1) {
-    axios.get("http://localhost:3001/receivedpayments").then((response) => {
+    axios.post(`http://localhost:3001/${reportState}`,data).then((response) => {
       // const name = response.data.firstname;
       // console.log(response.data[0].username);
       setGetItems(response.data);
@@ -75,11 +76,11 @@ function Report() {
               <option selected disabled>
                 Select Report Type
               </option>
-              <option value="Received Payment List">
+              <option value="reportreceivedpayments">
                 Recived Payment List
               </option>
-              <option value="Park Owners List">Park Owners</option>
-              <option value="Customers List">Customers</option>
+              <option value="reportviewowners">Park Owners</option>
+              <option value="reportcustomers">Customers</option>
             </select>
 
             <label className="label">From</label>
@@ -98,7 +99,6 @@ function Report() {
               onChange={(e) => setToData(e.target.value)}
             />
             {toDate}
-            
           </div>
           <div className="buttonContainer">
             <button className="btn btn-warning" onClick={handleDownload}>

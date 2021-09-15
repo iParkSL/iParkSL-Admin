@@ -49,7 +49,7 @@ function App() {
         <Route path="/report">
           <Report/>
         </Route>
-        <Route path="/editprofile">
+        <Route path="/changepassword">
           <Editprofile/>
         </Route>
         <Route path="/viewmap">

@@ -47,7 +47,7 @@ export default function Sidebar() {
                             <AssignmentIcon/><Link to="/report" style={{ textDecoration: 'none', color: 'black', marginLeft: 5}}>Reports</Link>
                         </li>
                         <li className="sidebarListItem">
-                            <EditIcon/><Link to="/editprofile" style={{ textDecoration: 'none', color: 'black', marginLeft: 5}}>Edit Profile</Link>
+                            <EditIcon/><Link to="/changepassword" style={{ textDecoration: 'none', color: 'black', marginLeft: 5}}>Change Password</Link>
                         </li>
                     </ul>
                 </div>
