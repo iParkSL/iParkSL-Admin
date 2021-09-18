@@ -63,7 +63,7 @@ function Report() {
         <div className="reportContainer">
           <div className="titleContainer">
             <h2 className="userTitle">Reports</h2>
-            {fromDate}
+            {/* {fromDate} */}
           </div>
           <div className="selectContainer">
             <select
@@ -98,7 +98,7 @@ function Report() {
               className="input"
               onChange={(e) => setToData(e.target.value)}
             />
-            {toDate}
+            {/* {toDate} */}
           </div>
           <div className="buttonContainer">
             <button className="btn btn-warning" onClick={handleDownload}>

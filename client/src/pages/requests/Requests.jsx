@@ -90,9 +90,16 @@ export default function Requests() {
                         <td>{value.username}</td>
                         <td>{value.firstname}</td>
                         <td>{value.email}</td>
-                        <td><button className="btn btn-success" onClick={()=>{
-                          history.push(`/parkownerrequest/${value.id}`);
-                        }}>View</button></td>
+                        <td>
+                          <button
+                            className="btn btn-success actionbtn "
+                            onClick={() => {
+                              history.push(`/parkownerrequest/${value.id}`);
+                            }}
+                          >
+                            View
+                          </button>
+                        </td>
                       </tr>
                     );
                   })}

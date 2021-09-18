@@ -6,6 +6,9 @@ import Sidebar from '../../componnet/sidebar/Sidebar';
 import React, { useState } from 'react';
 import axios from "axios";
 import { useHistory } from "react-router";
+import { toast } from "react-toastify";
+
+toast.configure();
 
 export default function Editprofile() {
 
@@ -28,9 +31,13 @@ export default function Editprofile() {
             }
         ).then((response) => {
             if (response.data.error) {
-                alert(response.data.error)
+                //alert(response.data.error);
+                toast.warn(response.data.error, { autoClose: 3000 });
             } else {
-                alert("Successfully Changed");
+                //alert("Successfully Changed");
+                toast.success("Change Success, Please Login with new Password", {
+                  autoClose: 3000,
+                });
                 history.push("/");
             }
         });

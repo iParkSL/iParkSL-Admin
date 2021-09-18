@@ -39,10 +39,16 @@
 .buttons {
     margin-left: 300px;
     margin-top: -20px;
+    display: inline;
 }
 
 .buttonsrearrange {
     margin-left: 10px;
+}
+
+.buttonsrearrange-red {
+    margin-left: 10px;
+    margin-top: -28px;
 }
 
 /* .imageSide {

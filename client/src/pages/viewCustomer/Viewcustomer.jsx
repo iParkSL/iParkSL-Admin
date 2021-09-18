@@ -9,6 +9,9 @@ import { useHistory } from "react-router-dom";
 import ReactPaginate from "react-paginate";
 import SearchIcon from "@material-ui/icons/Search";
 import CloseIcon from "@material-ui/icons/Close";
+import { toast } from "react-toastify";
+
+toast.configure();
 
 export default function ViewCustomers() {
   let history = useHistory();
@@ -27,7 +30,12 @@ export default function ViewCustomers() {
 
   const handleDelete = (id) => {
     axios.delete(`http://localhost:3001/customers/byId/${id}`).then(() => {
-      history.push("/viewcustomer");
+      const newCustomerList = listcustomer.filter((owner) => owner.id != id);
+      setCustomer([...newCustomerList]);
+
+      toast.success("Delete Success", {
+        autoClose: 2000,
+      });
     });
   };
 

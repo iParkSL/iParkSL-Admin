@@ -1,18 +1,26 @@
 import "./userList.css";
 
 import { useState, useEffect } from "react";
+import { useHistory } from "react-router";
 import Topbar from "../../componnet/topbar/Topbar";
 import Sidebar from "../../componnet/sidebar/Sidebar";
 import axios from "axios";
 import ReactPaginate from "react-paginate";
 import SearchIcon from "@material-ui/icons/Search";
 import CloseIcon from "@material-ui/icons/Close";
+import { toast } from "react-toastify";
+
+toast.configure();
 
 export default function UserList() {
+
+  const history = useHistory();
+
   const [listowners, setOwners] = useState([]);
   const [pageNumber, setPageNumber] = useState(0);
   const [filteredData, setFilteredData] = useState([]);
   const [wordEntered, setWordEntered] = useState("");
+
 
   useEffect(() => {
     axios.get("http://localhost:3001/viewowners").then((response) => {
@@ -22,7 +30,14 @@ export default function UserList() {
 
   const handleDelete = (id) => {
     axios.delete(`http://localhost:3001/viewowners/byId/${id}`).then(() => {
-      // history.push("/viewcustomer");
+      // setOwners([listowners]);
+      const newOwnerList = listowners.filter((owner) => owner.id != id);
+      setOwners([...newOwnerList]);
+      
+      toast.success("Delete Success", {
+        autoClose: 2000,
+      });
+      // history.push("/users");
     });
   };
 

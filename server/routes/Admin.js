@@ -43,21 +43,31 @@ router.get("/auth", validateToken, (req, res)=>{
 
 router.put("/changepassword",validateToken, async (req, res) => {
     const { oldPassword, newPassword } = req.body;
-    
-    const user = await Admin.findOne({ where: { username: req.user.username } });
 
-    bcrypt.compare(oldPassword, user.password).then((match) => {
-      if (!match)
-            res.json({ error: "Wrong Password Entered!" });
-        
-        bcrypt.hash(newPassword, 10).then((hash) => {
-            Admin.update({
-                password: hash
-            },{where:{username: req.user.username}}
-          );
-          res.json("SUCCESS");
+    try {
+        const user = await Admin.findOne({
+          where: { username: req.user.username },
         });
-    });
+        bcrypt.compare(oldPassword, user.password).then((match) => {
+          if (!match) res.json({ error: "Wrong Password Entered!" });
+
+          bcrypt.hash(newPassword, 10).then((hash) => {
+            Admin.update(
+              {
+                password: hash,
+              },
+              { where: { username: req.user.username } }
+            );
+            res.json("SUCCESS");
+          });
+        });
+    } catch (error) {
+        console.log(error);
+    }
+    
+    
+
+    
 });
 
 module.exports = router;

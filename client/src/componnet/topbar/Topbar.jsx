@@ -9,6 +9,9 @@ import { AuthContext } from '../../helpers/AuthContext';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
+import { toast } from "react-toastify";
+
+toast.configure();
 
 export default function Topbar() {
 
@@ -34,6 +37,9 @@ export default function Topbar() {
     const logout = () =>{
         localStorage.removeItem("accessToken");
         setAuthState(false);
+        toast.success("Logout Success", {
+          autoClose: 1000,
+        });
         history.push("/");
          };
 

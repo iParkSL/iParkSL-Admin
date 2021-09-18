@@ -178,32 +178,27 @@ export default function ParkOwnerReq() {
                     />
                   </Form.Group>
                 </Row>
-                {/* <Row className="mb-3">
-                                    <Form.Group as={Col}>
-                                        <Form.Label>Facilities</Form.Label>
-                                        <div className="mb-3">
-                                            <Form.Check
-                                                inline
-                                                label="CCTV"
-                                                type="checkbox"
-                                                checked
-                                            />
-                                            <Form.Check
-                                                inline
-                                                label="WiFi"
-                                                type="checkbox"
-                                                checked
-                                            />
-                                            <Form.Check
-                                                inline
-                                                label="Water"
-                                                type="checkbox"
-                                                checked
-                                            />
-                                        </div>
-                                    </Form.Group>
-
-                                </Row> */}
+                <Row className="mb-3">
+                  <Form.Group as={Col}>
+                    <Form.Label>Facilities</Form.Label>
+                    <div className="mb-3">
+                      <Form.Check inline label="CCTV" type="checkbox" checked />
+                      <Form.Check inline label="WiFi" type="checkbox" checked />
+                      <Form.Check
+                        inline
+                        label="Water"
+                        type="checkbox"
+                        checked
+                      />
+                      <Form.Check
+                        inline
+                        label="Toilets"
+                        type="checkbox"
+                        checked
+                      />
+                    </div>
+                  </Form.Group>
+                </Row>
                 <div className="buttons">
                   <Button
                     variant="success"
@@ -216,7 +211,7 @@ export default function ParkOwnerReq() {
                   <Button
                     variant="danger"
                     type="submit"
-                    className="buttonsrearrange"
+                    className="buttonsrearrange-red"
                     onClick={handleReject}
                   >
                     Reject

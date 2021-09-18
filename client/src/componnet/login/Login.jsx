@@ -4,6 +4,9 @@ import "./login.css";
 import axios from "axios";
 import { useHistory } from 'react-router-dom';
 import { AuthContext } from '../../helpers/AuthContext';
+import { toast } from 'react-toastify';
+
+toast.configure();
 
 const Login = () => {
 
@@ -20,11 +23,15 @@ const Login = () => {
         axios.post("http://localhost:3001/auth/login", data)
             .then((response) => {
                 if(response.data.error){
-                    alert(response.data.error);
+                    // alert(response.data.error);
+                    toast.warn(response.data.error, { autoClose: 3000 });
                 }else {
                     localStorage.setItem("accessToken", response.data);
                     // setAuthState(true);
                     history.push("/home");
+                    toast.success("Login Success", {
+                      autoClose: 3000,
+                    });
                 }
             });
     };
