@@ -20,6 +20,9 @@ app.use("/owners", ownerreqRouter);
 const customerRouter = require("./routes/Customers");
 app.use("/customers", customerRouter);
 
+const reportcustomerRouter = require("./routes/ReportViewCustomers");
+app.use("/reportcustomers", reportcustomerRouter);
+
 const viewownersRouter = require("./routes/Viewowners");
 app.use("/viewowners", viewownersRouter);
 
