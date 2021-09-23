@@ -18,59 +18,75 @@ import Viewmap from "./pages/viewMap/Viewmap";
 import ReceivedPayment from "./pages/receivedPayments/Receivedpayment";
 import ViewCustomers from "./pages/viewCustomer/Viewcustomer";
 import Requests from "./pages/requests/Requests";
+import ReportHome from "./pages/ReportHome/ReportHome";
+import ReportCustomer from "./pages/reports/ReportCustomer";
+import ReportOwner from "./pages/reports/ReportOwner";
+
 
 
 function App() {
   return (
     <Router>
       {/* <Login/> */}
-    {/* <Topbar/> */}
-    {/* <div className="containersidebar"> */}
+      {/* <Topbar/> */}
+      {/* <div className="containersidebar"> */}
       {/* <Sidebar/> */}
       <Switch>
         <Route exact path="/">
-          <Login/>
+          <Login />
         </Route>
         <Route path="/home">
-          <Home/>
+          <Home />
         </Route>
         <Route path="/users">
-          <UserList/>
+          <UserList />
         </Route>
         <Route path="/user/:userID">
-          <User/>
+          <User />
         </Route>
         <Route path="/parkownerrequest/:id">
-          <ParkOwnerReq/>
+          <ParkOwnerReq />
         </Route>
         {/* <Route path="/addtomap">
           <AddToMap/>
         </Route> */}
         <Route path="/report">
-          <Report/>
+          <Report />
         </Route>
         <Route path="/changepassword">
-          <Editprofile/>
+          <Editprofile />
         </Route>
         <Route path="/viewmap">
-          <Viewmap/>
+          <Viewmap />
         </Route>
         <Route path="/receivedpayments">
-          <ReceivedPayment/>
+          <ReceivedPayment />
         </Route>
         <Route path="/viewcustomers">
-          <ViewCustomers/>
+          <ViewCustomers />
         </Route>
         <Route path="/requests">
-          <Requests/>
+          <Requests />
         </Route>
         <Route path="/login">
-          <Login/>
+          <Login />
+        </Route>
+        <Route path="/reporthome">
+          <ReportHome />
+        </Route>
+        <Route path="/reportcustomer">
+          <ReportCustomer />
+        </Route>
+        <Route path="/reportowner">
+          <ReportOwner />
+        </Route>
+        <Route path="/reportpayment">
+          <Report />
         </Route>
       </Switch>
-        
-    {/* </div>   */}
-  </Router>
+
+      {/* </div>   */}
+    </Router>
   );
 }
 

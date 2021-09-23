@@ -54,14 +54,14 @@ export default function Topbar() {
                 <Nav.Link href="#features">Features</Nav.Link>
                 <Nav.Link href="#pricing">Pricing</Nav.Link>
             </Nav> */}
-
+            
             {!authState ? (
                 <>
                 </>
             ) : (
                 <button onClick={logout} className="logoutButton">Logout</button>
             ) }
-                
+            
             </div>
             {/* <div className="icon-container">
                     <NotificationsIcon className="icon-container-item item1"/><span/>

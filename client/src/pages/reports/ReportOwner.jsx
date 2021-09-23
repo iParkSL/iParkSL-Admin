@@ -6,7 +6,7 @@ import axios from "axios";
 import { PDFExport, savePDF } from "@progress/kendo-react-pdf";
 // import { saveAs } from 'file-saver';
 
-function Report() {
+function ReportOwner() {
   const [reportState, setReportState] = useState("");
   const [getItems, setGetItems] = useState([]);
   const [show, setShow] = useState(false);
@@ -18,25 +18,27 @@ function Report() {
   const pdfExportComponent = React.useRef(null);
 
   const handleDownload = (e) => {
-    const data = {fromDate: fromDate, toDate: toDate}
+    const data = { fromDate: fromDate, toDate: toDate };
     // e.preventDefault();
     // if (reportState === 1) {
-    axios.post(`http://localhost:3001/${reportState}`,data).then((response) => {
-      // const name = response.data.firstname;
-      // console.log(response.data[0].username);
-      setGetItems(response.data);
-      setShow(true);
-      setShowBtn(true);
+    axios
+      .post(`http://localhost:3001/${reportState}`, data)
+      .then((response) => {
+        // const name = response.data.firstname;
+        // console.log(response.data[0].username);
+        setGetItems(response.data);
+        setShow(true);
+        setShowBtn(true);
 
-      console.log(response.data);
-      // axios.post("http://localhost:3001/generatereport/create-pdf", response.data).then(() => {
-      //   axios.get('http://localhost:3001/generatereport/fetch-pdf', { responseType: 'blob' }).then((res) => {
-      //     const pdfBlob = new Blob([res.data], { type: 'application/pdf' });
+        console.log(response.data);
+        // axios.post("http://localhost:3001/generatereport/create-pdf", response.data).then(() => {
+        //   axios.get('http://localhost:3001/generatereport/fetch-pdf', { responseType: 'blob' }).then((res) => {
+        //     const pdfBlob = new Blob([res.data], { type: 'application/pdf' });
 
-      //     saveAs(pdfBlob, 'newPdf.pdf');
-      //   });
-      // });
-    });
+        //     saveAs(pdfBlob, 'newPdf.pdf');
+        //   });
+        // });
+      });
 
     // }
   };
@@ -76,11 +78,11 @@ function Report() {
               <option selected disabled>
                 Select Report Type
               </option>
-              <option value="reportreceivedpayments">
+              {/* <option value="reportreceivedpayments">
                 Recived Payment List
-              </option>
-              {/* <option value="reportviewowners">Park Owners</option>
-              <option value="reportcustomers">Customers</option> */}
+              </option> */}
+              <option value="reportviewowners">Park Owners</option>
+              {/* <option value="reportcustomers">Customers</option> */}
             </select>
 
             <label className="label">From</label>
@@ -129,9 +131,8 @@ function Report() {
               >
                 <div className="tableContainer" ref={container}>
                   <div className="reportHeading">
-                    <h3>Received Payments {fromDate} to { toDate}</h3>
+                                      <h3>Park Owners Registered {fromDate} to { toDate}</h3>
                   </div>
-                  <br />
                   <div className="reportTable">
                     <table class="table">
                       <thead>
@@ -139,9 +140,9 @@ function Report() {
                           <th scope="col">Username</th>
                           <th scope="col">First Name</th>
                           <th scope="col">Email</th>
-                          <th scope="col">Address Line 1</th>
+                          {/* <th scope="col">Address Line 1</th>
                           <th scope="col">Address Line 2</th>
-                          <th scope="col">Phone Number</th>
+                          <th scope="col">Phone Number</th> */}
                         </tr>
                       </thead>
                       <tbody>
@@ -151,9 +152,9 @@ function Report() {
                               <td>{value.username}</td>
                               <td>{value.firstname}</td>
                               <td>{value.email}</td>
-                              <td>{value.address_line1}</td>
+                              {/* <td>{value.address_line1}</td>
                               <td>{value.address_line2}</td>
-                              <td>{value.phonenumber}</td>
+                              <td>{value.phonenumber}</td> */}
                             </tr>
                           );
                         })}
@@ -170,4 +171,4 @@ function Report() {
   );
 }
 
-export default Report;
+export default ReportOwner;

@@ -22,9 +22,9 @@ export default function Sidebar() {
                         <li className="sidebarListItem">
                             <HomeIcon/><Link to="/home" style={{ textDecoration: 'none', color: 'black', marginLeft: 5}}>Home</Link>
                         </li>
-                        <li className="sidebarListItem">
+                        {/* <li className="sidebarListItem">
                             <AssessmentIcon/>Analytics
-                        </li>
+                        </li> */}
                         <li className="sidebarListItem">
                             <MessageIcon/><Link to="/requests" style={{ textDecoration: 'none', color: 'black', marginLeft: 5}}>Requests</Link>
                         </li>
@@ -44,7 +44,7 @@ export default function Sidebar() {
                             <CreditCardIcon/><Link to="/receivedpayments" style={{ textDecoration: 'none', color: 'black', marginLeft: 5}}>Recieved Payments</Link>
                         </li>
                         <li className="sidebarListItem">
-                            <AssignmentIcon/><Link to="/report" style={{ textDecoration: 'none', color: 'black', marginLeft: 5}}>Reports</Link>
+                            <AssignmentIcon/><Link to="/reporthome" style={{ textDecoration: 'none', color: 'black', marginLeft: 5}}>Reports</Link>
                         </li>
                         <li className="sidebarListItem">
                             <EditIcon/><Link to="/changepassword" style={{ textDecoration: 'none', color: 'black', marginLeft: 5}}>Change Password</Link>
